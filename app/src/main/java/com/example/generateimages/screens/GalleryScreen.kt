@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -17,7 +18,13 @@ import com.example.generateimages.viewmodel.GalleryViewModel
 fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel()) {
     val dogImages by viewModel.dogImages.collectAsState()
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
         Text(text = "My Recently Generated Dogs", modifier = Modifier.padding(bottom = 8.dp))
 
@@ -39,7 +46,7 @@ fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel()) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button (onClick = { viewModel.clearCache() }) {
+        Button(onClick = { viewModel.clearCache() }) {
             Text("Clear Dogs")
         }
     }

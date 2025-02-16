@@ -10,7 +10,7 @@ class CacheManager(context: Context) {
 
     fun saveImage(url: String) {
         val images = getImages().toMutableList()
-        if (images.size >= 20) images.removeAt(0) // Keep only 20 recent images
+        if (images.size >= 20) images.removeAt(0)
         images.add(url)
         prefs.edit().putString("dog_images", Gson().toJson(images)).apply()
     }

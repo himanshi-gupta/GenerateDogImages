@@ -32,22 +32,22 @@ abstract class RepositoryModule {
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideOkHttpClient(): OkHttpClient {
-//        val logging = HttpLoggingInterceptor()
-//        logging.level = HttpLoggingInterceptor.Level.BODY // ✅ Logs full request & response
-//
-//        return OkHttpClient.Builder()
-//            .addInterceptor(logging)
-//            .build()
-//    }
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
+        return OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .build()
+    }
 
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://dog.ceo/api/") // ✅ Ensure correct base URL
+            .baseUrl("https://dog.ceo/api/")
 //            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -56,7 +56,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java) // ✅ Ensure only this provides ApiService
+        return retrofit.create(ApiService::class.java)
     }
 
     @Provides

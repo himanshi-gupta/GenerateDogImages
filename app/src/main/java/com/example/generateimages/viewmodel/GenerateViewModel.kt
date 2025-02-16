@@ -19,8 +19,6 @@ class GenerateViewModel @Inject constructor(private val repository: DogRepositor
         viewModelScope.launch (Dispatchers.IO){
             try {
                 val response = repository.fetchRandomDog()
-                Log.d("Himanshi Data","${response}")
-                Log.d("Himanshi url",response.message)
                 imageUrl = response.message
                 onSuccess(imageUrl)
             } catch (e: HttpException) {
